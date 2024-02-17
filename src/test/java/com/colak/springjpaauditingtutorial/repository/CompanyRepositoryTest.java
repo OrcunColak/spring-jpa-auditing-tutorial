@@ -2,23 +2,34 @@ package com.colak.springjpaauditingtutorial.repository;
 
 import com.colak.springjpaauditingtutorial.config.SpringSecurityAuditorAwareImpl;
 import com.colak.springjpaauditingtutorial.jpa.Company;
+import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.history.Revision;
+import org.springframework.data.history.Revisions;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.fail;
 
 @SpringBootTest
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+@Slf4j
 class CompanyRepositoryTest {
 
     @Autowired
     private CompanyRepository companyRepository;
 
     @Test
+    @Order(1)
     void testSave() throws InterruptedException {
         Company company = new Company();
         company.setName("supplier");
@@ -56,6 +67,24 @@ class CompanyRepositoryTest {
         // Temporal timestamps
         assertEquals(savedCompany1.getCreatedDate(), savedCompany2.getCreatedDate());
         assertNotEquals(savedCompany1.getLastModifiedDate(), savedCompany2.getLastModifiedDate());
+    }
 
+    @Test
+    @Order(1)
+    void testHistory() {
+        Revisions<Long, Company> revisions = companyRepository.findRevisions(1L);
+        assertNotNull(revisions);
+
+        List<Company> history = revisions.get()
+                .map(Revision::getEntity)
+                .toList();
+
+        log.info("History : {} ", history);
+
+        companyRepository.findLastChangeRevision(1L)
+                .ifPresentOrElse(lastRevision -> {
+                            log.info("lastRevision : {} ", lastRevision.getEntity());
+                        },
+                        () -> fail("Test failed"));
     }
 }
