@@ -41,7 +41,7 @@ public class AuditBase {
     @CreatedBy
     private String createdBy;
 
-    @Column(name = "created_date", nullable = false, updatable = false)
+    @Column(name = "created_date", nullable = false, updatable = false, columnDefinition = "TIMESTAMP(3)")
     @CreatedDate
     @Temporal(TemporalType.TIMESTAMP)
     private Instant createdDate;
@@ -50,7 +50,7 @@ public class AuditBase {
     @LastModifiedBy
     private String lastModifiedBy;
 
-    @Column(name = "modified_date")
+    @Column(name = "modified_date", nullable = false, columnDefinition = "TIMESTAMP(3)")
     @LastModifiedDate
     @Temporal(TemporalType.TIMESTAMP)
     private Instant lastModifiedDate;
