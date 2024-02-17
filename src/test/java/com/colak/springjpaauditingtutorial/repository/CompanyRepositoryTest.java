@@ -16,14 +16,14 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 class CompanyRepositoryTest {
 
     @Autowired
-    private CompanyRepository supplierRepository;
+    private CompanyRepository companyRepository;
 
     @Test
     void testSave() throws InterruptedException {
         Company company = new Company();
         company.setName("supplier");
 
-        Company savedCompany1 = supplierRepository.saveAndFlush(company);
+        Company savedCompany1 = companyRepository.saveAndFlush(company);
 
         // Auditor names
         // Created by is set by SpringSecurityAuditorAwareImpl object
@@ -41,10 +41,10 @@ class CompanyRepositoryTest {
         updateCompany.setId(savedCompany1.getId());
         updateCompany.setName("new supplier");
         // Save entity does not read not updated columns
-        supplierRepository.save(updateCompany);
+        companyRepository.save(updateCompany);
 
         // So we need to read the updated entity again to compare with the first entity
-        Company savedCompany2 = supplierRepository.findById(savedCompany1.getId())
+        Company savedCompany2 = companyRepository.findById(savedCompany1.getId())
                 .get();
 
         assertNotEquals(savedCompany1.getName(), savedCompany2.getName());
