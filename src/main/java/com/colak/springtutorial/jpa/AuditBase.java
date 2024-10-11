@@ -37,19 +37,23 @@ import java.time.Instant;
 @SuperBuilder
 public class AuditBase {
 
+    // To track who created the entity.
     @Column(name = "created_by", nullable = false, updatable = false)
     @CreatedBy
     private String createdBy;
 
+    // To track when the entity was created.
     @Column(name = "created_date", nullable = false, updatable = false, columnDefinition = "TIMESTAMP(3)")
     @CreatedDate
     @Temporal(TemporalType.TIMESTAMP)
     private Instant createdDate;
 
+    // To track who last modified the entity.
     @Column(name = "modified_by")
     @LastModifiedBy
     private String lastModifiedBy;
 
+    // To track when the entity was last updated
     @Column(name = "modified_date", nullable = false, columnDefinition = "TIMESTAMP(3)")
     @LastModifiedDate
     @Temporal(TemporalType.TIMESTAMP)

@@ -11,6 +11,10 @@ https://medium.com/@rosuth/simplified-auditing-options-for-spring-applications-a
 Basic Auditing (timestamps, user information): Use Spring Data JPA Auditing.
 Full Entity Versioning: Use Hibernate Envers if you need detailed versioning of entities.
 
+# Basic Spring Data JPA Auditing.
+
+Requires @EnableJpaAuditing
+
 # dateTimeProvider
 
 The original idea is from  
