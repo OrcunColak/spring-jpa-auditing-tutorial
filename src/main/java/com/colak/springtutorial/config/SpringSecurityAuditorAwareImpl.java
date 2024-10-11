@@ -1,4 +1,4 @@
-package com.colak.springjpaauditingtutorial.config;
+package com.colak.springtutorial.config;
 
 import org.springframework.data.domain.AuditorAware;
 

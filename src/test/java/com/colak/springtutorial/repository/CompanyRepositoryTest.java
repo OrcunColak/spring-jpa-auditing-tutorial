@@ -1,7 +1,7 @@
-package com.colak.springjpaauditingtutorial.repository;
+package com.colak.springtutorial.repository;
 
-import com.colak.springjpaauditingtutorial.config.SpringSecurityAuditorAwareImpl;
-import com.colak.springjpaauditingtutorial.jpa.Company;
+import com.colak.springtutorial.config.SpringSecurityAuditorAwareImpl;
+import com.colak.springtutorial.jpa.Company;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;

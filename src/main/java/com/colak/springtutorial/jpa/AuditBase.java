@@ -1,4 +1,4 @@
-package com.colak.springjpaauditingtutorial.jpa;
+package com.colak.springtutorial.jpa;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
