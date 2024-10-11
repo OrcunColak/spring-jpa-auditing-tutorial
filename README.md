@@ -15,6 +15,13 @@ Full Entity Versioning: Use Hibernate Envers if you need detailed versioning of 
 
 Requires @EnableJpaAuditing
 
+# Hibernate Envers
+
+Requires @Audited annotation. The only annotation required to enable auditing for an entity using Hibernate Envers is
+the @Audited annotation. This annotation is sufficient for basic auditing of an entity.
+
+Requires the repository to inherit from RevisionRepository
+
 # dateTimeProvider
 
 The original idea is from  

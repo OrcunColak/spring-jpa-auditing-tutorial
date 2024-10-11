@@ -22,7 +22,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 // Envers
 // @NotAudited : If you don't want the relationship to be audited mark it as org.hibernate.envers.NotAudited
-@Audited
+@Audited // // This annotation indicates that this entity should be audited
 // This is not necessary because we are setting table suffix from application-envers.properties
 // @AuditTable("company_history")
 
